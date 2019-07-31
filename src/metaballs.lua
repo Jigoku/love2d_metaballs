@@ -47,7 +47,6 @@ function metaballs.surface()
 	-- set pixel values
 	for x=0, metaballs.w-1 do
 		for y=0, metaballs.h-1 do
-			local index = x + y * metaballs.w;
 			local sum = 0
 			for _,b in ipairs(metaballs.balls) do
 				local d = dist(x, y, b.x, b.y);
