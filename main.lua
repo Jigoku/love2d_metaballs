@@ -1,5 +1,7 @@
+-- example program using metaballs.lua module
+
 function love.load()
-	love.window.setMode(800, 600)
+	love.window.setMode(1024, 768)
 	require("metaballs") 
 	metaballs.create(8)
 end
@@ -7,7 +9,12 @@ end
 function love.draw()
 	-- draw the metaball surface
 	love.graphics.setColor(1,1,1,1)
-	love.graphics.draw(metaballs.surface(),0,0,0,love.graphics.getWidth()/metaballs.w,love.graphics.getHeight()/metaballs.h)
+	
+	local w = love.graphics.getWidth()
+	local h = love.graphics.getHeight()
+	
+	-- draw metaballs, stretch/scale to window size
+	love.graphics.draw(metaballs.surface(),w/2,h/2,0,w/metaballs.w,h/metaballs.h, metaballs.w/2,metaballs.h/2, 0,0)
 	
 	-- fps display
 	love.graphics.setColor(0,0,0,0.6)

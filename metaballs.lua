@@ -1,7 +1,19 @@
--- Ported to Lua/Love2d by unixfreak (ricky thomson)
+--[[
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * u should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ --]]
+
+--  Ported to Lua/Love2d by unixfreak (ricky thomson)
 --  based on project from here:
 --  https://www.youtube.com/watch?v=ccYLb7cLB1I
-
 
 metaballs = {}
 
@@ -42,7 +54,7 @@ function metaballs.surface()
 				sum = sum + 100 * b.r / d;
 			end
 			-- pos / color
-			metaballs.imageData:setPixel(x,y,HSL(sum/255/255,1,sum/255/255,1))
+			metaballs.imageData:setPixel(x,y,HSL(sum/255/255,0.5,sum/255/255,1))
 		end
 	end
 
@@ -54,9 +66,9 @@ end
 function metaballs.update(dt)
 	if #metaballs.balls < 0 then return end
 	
-	for i,b in ipairs(metaballs.balls) do
+	for _,b in ipairs(metaballs.balls) do
 		-- bounce on the edges of the screen
-		b.x = math.max(0,math.min(metaballs.w,  b.x + b.vx *dt))
+		b.x = math.max(0,math.min(metaballs.w, b.x + b.vx *dt))
 		b.y = math.max(0,math.min(metaballs.h, b.y + b.vy *dt))
 		if (b.x >= metaballs.w or b.x <= 0) then b.vx = b.vx * -1 end
 		if (b.y >= metaballs.h or b.y <= 0) then b.vy = b.vy * -1 end
